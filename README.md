@@ -1,7 +1,7 @@
 CompanyNumberField
 ==================
 
-CompanyNumberField is a field for entering company registration numbers into forms in ATK14 applications.
+CompanyNumberField is a field for entering company registration numbers ("IČ" or "IČO" in Czech) into forms in ATK14 applications.
 
 Installation
 ------------
