@@ -12,6 +12,7 @@
  *	$field = new CompanyNumberField(["country" => "CZ"]); // accepts company numbers of the one country only
  */
 class CompanyNumberField extends RegexField {
+
 	static $Patterns;
 	static $OutputFilters;
 
@@ -23,8 +24,12 @@ class CompanyNumberField extends RegexField {
 				"invalid" => _("Please enter a valid company registration number"),
 			),
 			"format_hints" => array(
-				"CZ" => _("Enter the company number as NNNNNNNN (8 digits)"),
-				"SK" => _("Enter the company number as NNNNNNNN (8 digits)"),
+				"CZ" => _("Enter the company number as eight digits"),
+				"SK" => _("Enter the company number as eight digits"),
+				"SI" => _("Enter the company number as seven digits"),
+				"PL" => _("Enter the company number as nine digits"),
+				"LT" => _("Enter the company number as nine digits"),
+				"LV" => _("Enter the company number as LV and eleven digits"),
 			),
 		);
 
@@ -117,15 +122,19 @@ class CompanyNumberField extends RegexField {
 
 // https://cs.wikipedia.org/wiki/Identifika%C4%8Dn%C3%AD_%C4%8D%C3%ADslo_osoby
 CompanyNumberField::$Patterns = array(
-		"CZ" => '\d{8}',
-		"SK" => '\d{8}',
-		"SI" => '\d{7}',
-		"PL" => '\d{9}',
-		"LT" => '\d{9}',
-		"LV" => 'LV\d{11}',
+	"CZ" => '(\d{6,8})',
+	"SK" => '\d{8}',
+	"SI" => '\d{7}',
+	"PL" => '\d{9}',
+	"LT" => '\d{9}',
+	"LV" => '(LV)\s*(\d{11})'
 );
 
 CompanyNumberField::$OutputFilters = array(
+	"CZ" => function($matches){
+		return str_repeat("0",8-strlen($matches[1])).$matches[1]; // "123456" -> "00123456"
+	},
+	"LV" => function($matches){
+		return $matches[1].$matches[2]; // "LV 12345678901" -> "LV12345678901"
+	}
 );
-
-
