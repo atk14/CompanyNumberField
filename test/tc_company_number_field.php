@@ -37,10 +37,28 @@ class TcCompanyNumberField extends TcBase {
 		$this->assertTrue($this->field->is_valid_for("LV",$value,$err));
 		$this->assertEquals("LV12345678901",$value);
 
+		$value = $this->assertValid("lv 23456789012");
+		$this->assertEquals("LV 23456789012",$value);
+		$this->assertTrue($this->field->is_valid_for("LV",$value,$err));
+		$this->assertEquals("LV23456789012",$value);
+
 		$value = $this->assertValid("12345678");
 		$this->assertEquals("12345678",$value);
 		$this->assertFalse($this->field->is_valid_for("LV",$value,$err));
 		$this->assertEquals("12345678",$value);
 		$this->assertEquals("Enter the company number as LV and eleven digits",$err);
+
+		// CompanyNumberField configured for one specific country
+
+		$this->field = new CompanyNumberField(array("country" => "CZ"));
+
+		$value = $this->assertValid("12345678");
+		$this->assertValid("12345678",$value);
+
+		$value = $this->assertValid("123456");
+		$this->assertValid("00123456",$value);
+
+		$err = $this->assertInvalid("123456789");
+		$this->assertEquals("Enter the company number as eight digits",$err);
 	}
 }
