@@ -90,7 +90,7 @@ Error message for invalid company_number code or format hints can be specified
         // ...
         $this->add_field("company_number", new CompanyNumberField([
           "error_messages" => [
-            "invalid" => _("Invalid ZIP code"),
+            "invalid" => _("Invalid company number"),
           ],
           "format_hints" => [
             "CZ" => _("Please use format NNNNNNNN (8 digits)"),
