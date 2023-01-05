@@ -45,6 +45,7 @@ class CompanyNumberField extends RegexField {
 	}
 
 	function clean($value){
+		$value = (string)$value;
 		$value = trim($value);
 		$value = strtoupper($value);
 		$value = preg_replace('/\s+/',' ',$value);
