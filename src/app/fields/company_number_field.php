@@ -30,6 +30,7 @@ class CompanyNumberField extends RegexField {
 				"PL" => _("Enter the company number as nine digits"),
 				"LT" => _("Enter the company number as nine digits"),
 				"LV" => _("Enter the company number as LV and eleven digits"),
+				"IT" => _("Enter the company number as ten digits"),
 			),
 		);
 
@@ -127,7 +128,8 @@ CompanyNumberField::$Patterns = array(
 	"SI" => '\d{7}',
 	"PL" => '\d{9}',
 	"LT" => '\d{9}',
-	"LV" => '(LV)\s*(\d{11})'
+	"LV" => '(LV)\s*(\d{11})',
+	"IT" => '\d{10}',
 );
 
 CompanyNumberField::$OutputFilters = array(
