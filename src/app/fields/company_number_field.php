@@ -16,6 +16,9 @@ class CompanyNumberField extends RegexField {
 	static $Patterns;
 	static $OutputFilters;
 
+	var $country;
+	var $format_hints;
+
 	function __construct($options = array()){
 		$options += array(
 			"country" => null, // e.g. "CZ"
