@@ -1,10 +1,10 @@
 <?php
 class TcBase extends TcAtk14Field{
 
-	function setUp(){
+	function _setUp(){
 		$this->setUpFixtures();
 	}
 
-	function tearDown(){
+	function _tearDown(){
 	}
 }
